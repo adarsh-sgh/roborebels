@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="roborebels.css">
+    <title>RoboRebels</title>
+</head>
+<body>
+    <canvas id="zone" width="1000" height="900" onclick="shoot(event)"></canvas>
+    <div class='notice' id="walltip" style="display: block;">
+        <h1>Shoot through Walls</h1>
+        <p>it seems that window is made of Bulletproof glass. <br>
+            steel pillars are also not penetrable with our gun<br>
+            But your bullet can pierce through concrete easily. <br>
+            consider shooting while robot is behind brick walls</p>
+            <button onclick="restartGame()">Okay, Let's Start</button>
+    </div>
+    <div class="notice" id="robodead">
+        <h1>Robot Disasembeled</h1>
+        <p>Robot Has Been destroyed successfully<br>
+          Humanity will remember your contribution</p>
+          <button onclick="restartGame()">Shut Down More Robots</button>
+    </div>
+    <div class='notice' id="missedaim">
+        <h1>Target Missed</h1>
+        <p>At that moment, Robot was not there where you shot</p>
+            <button onclick="restartGame()">Try next bullet</button>
+    </div>
+<script src="roborebels.js"></script>
+</body>
+</html>
