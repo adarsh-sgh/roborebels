@@ -1,17 +1,14 @@
 let cnvs=document.getElementById('zone');
-let cw=1000//canvas width
-let ch=900;
+let cw=Math.max(document.documentElement.clientWidth ||0, window.innerWidth ||0)||640//canvas width
+let ch=Math.max(document.documentElement.clientHeight||0, window.innerHeight||0)||360;
+cnvs.width=cw;cnvs.height=ch;
 let rw=cw/30//robo width
-let rh=ch/2
+let rh=ch
 let roboPos=0
 let bulletFired=false
 let ctx=cnvs.getContext('2d');
+let map='0021202120212'
 ctx.fillStyle="firebrick";
-// function mapDraw() { 
-//     for (let i = 0; i < 10; ) {
-//         ctx.fillRect(++i * cw / 5, 0, cw / 10, ch);
-//     }
-// }
 function roboMove(){
     if(roboPos>cw||bulletFired){
         return "robo crossed canvas";
@@ -19,14 +16,13 @@ function roboMove(){
     setTimeout(() => {
         roboMove()
     }, 20);
-    ctx.fillStyle="red"
+    ctx.fillStyle="red";
     ctx.clearRect(0,0,cw,ch);
 ctx.fillRect(++roboPos,ch-rh,rw,rh);
 ctx.fillStyle="firebrick"
 mapDraw();
 };
 function shoot(evnt){
-    
     let rect = cnvs.getBoundingClientRect();
     let borderWidth = +((getComputedStyle(document.getElementById('zone'), null).getPropertyValue('border-left-width')).replace('px', ''))
     let xcanvas = evnt.clientX - rect.left - borderWidth
@@ -80,10 +76,9 @@ function restartGame() {
     hideAllNotice();
     
 }
-function mapDraw (map='0021202120212') {
-    map=map.split('')
+function mapDraw () {
     let bw=cw/map.length;
-    map.forEach(read)
+    map.split('').forEach(read)
     function read(value,i) {
       if(value==1){ctx.fillStyle='firebrick',ctx.fillRect(i*bw,0,bw,ch)};
       if(value==2){ctx.fillStyle='#7b9095', ctx.fillRect(i*bw,0,bw,ch);}//steel
