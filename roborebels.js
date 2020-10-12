@@ -1,10 +1,5 @@
-let cnvs=document.getElementById('zone');
-let cw=Math.max(document.documentElement.clientWidth ||0, window.innerWidth ||0)||640//canvas width
-let ch=Math.max(document.documentElement.clientHeight||0, window.innerHeight||0)||360;
-cnvs.width=cw;cnvs.height=ch;
-let rw=cw/30//robo width
-let rh=ch
-let roboPos=0
+let cnvs;let cw;let ch;let rw;let rh;let roboPos;
+sizeSet();
 let bulletFired=false
 let ctx=cnvs.getContext('2d');
 let map='0021202120212'
@@ -31,25 +26,14 @@ function shoot(evnt){
     killShow();
     bulletFired=true
      if(xcanvas>roboPos&&xcanvas<roboPos+rw&&colorClicked=='178,34,34,255'){//...colorClicked==wallcolor 
-         console.log('robot disassembled');
-         setTimeout(() => {//show killed notice after killShow() effect is seen
-            id('zone').style.display='none';
-            id('robodead').style.display='block'
-   
-         }, 2000);
+         setTimeout(()=>{noticeShow('robodead')}, 2000);
          return; 
      };
      if(colorClicked!='178,34,34,255'){//color clicked != wall color
-         setTimeout(() => {
-            id('zone').style.display='none'
-            id('walltip').style.display='block'
-         }, 2000);
+         setTimeout(()=>{noticeShow('walltip')}, 2000);
          return
      }
-     setTimeout(() => {
-        id('zone').style.display='none'
-        id('missedaim').style.display='block'
-     }, 2000);
+     setTimeout(()=>{noticeShow('missedaim')}, 2000);
      function killShow() {
         ctx.fillStyle="red"
         ctx.clearRect(0,0,cw,ch);
@@ -60,6 +44,7 @@ function shoot(evnt){
 }
 function id(elementId) {return document.getElementById(elementId)}
 function startGame() {
+    sizeSet()
     mapDraw();
     roboMove();   
 }
@@ -70,6 +55,7 @@ function hideAllNotice() {
 }
 function restartGame() {
     id('zone').style.display='block';
+    cnvs.requestFullscreen();
     roboPos=0;
     bulletFired=false;
     startGame();
@@ -85,3 +71,16 @@ function mapDraw () {
     }
         }
     
+function noticeShow(noticeId) {
+    id('zone').style.display='none';
+    id(noticeId).style.display='block';
+ document.exitFullscreen();
+}
+function sizeSet() {
+    cnvs=document.getElementById('zone');
+    cw=Math.max(document.documentElement.clientWidth ||0, window.innerWidth ||0)||640//canvas width
+    ch=Math.max(document.documentElement.clientHeight||0, window.innerHeight||0)||360;
+    cnvs.width=cw;cnvs.height=ch;
+    rw=cw/30//robo width
+    rh=ch
+}
