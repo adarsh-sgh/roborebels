@@ -20,9 +20,10 @@ canvas{
     display: none
 }
 button{
-    background-color: #4CAF50;
+    background-color: #ff800091;
     border: none;
-    color: white;
+    border-radius: 25px;
+    color: #ffffff;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;

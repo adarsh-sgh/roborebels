@@ -5,7 +5,9 @@ let ctx=cnvs.getContext('2d');
 let map='0021202120212'
 ctx.fillStyle="firebrick";
 function roboMove(){
-    if(roboPos>cw||bulletFired){
+    if(bulletFired){return}
+    if(roboPos>cw){ 
+        noticeShow('roboescaped')
         return "robo crossed canvas";
     }
     setTimeout(() => {
@@ -39,7 +41,6 @@ function shoot(evnt){
         ctx.clearRect(0,0,cw,ch);
     ctx.fillRect(roboPos,ch-rh,rw,rh);
     ctx.fillText('💥',xcanvas-5,ycanvas+3)//-5 & +3 align fire symbol's centre 
-    
     }
 }
 function id(elementId) {return document.getElementById(elementId)}
