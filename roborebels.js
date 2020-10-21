@@ -1,8 +1,22 @@
-let cnvs;let cw;let ch;let rw;let rh;let roboPos;
+let cnvs;let cw;let ch;let rw;let rh;let roboPos;let level=0
 sizeSet();
 let bulletFired=false
 let ctx=cnvs.getContext('2d');
-let map='0021202120212'
+let map=[
+    "021010010110",//level 0
+
+    "0021202120212",
+    "0221202120212",
+    "0221202212021",
+    
+    "0221200221200",
+    "022120022120",
+    "0222120222120",
+
+    "0021200",
+    "00221200",
+    "002221200"//level 9
+]
 ctx.fillStyle="firebrick";
 function roboMove(){
     if(bulletFired){return}
@@ -28,6 +42,9 @@ function shoot(evnt){
     killShow();
     bulletFired=true
      if(xcanvas>roboPos&&xcanvas<roboPos+rw&&colorClicked=='178,34,34,255'){//...colorClicked==wallcolor 
+        if(level==9){alert('Congratulations,All Levels Completed.');return}
+        level++;
+        id('robodead').querySelector('button').innerHTML=`Start Mission @ <b style="font-size:larger">Map ${level}⏭<b>`
          setTimeout(()=>{noticeShow('robodead')}, 2000);
          return; 
      };
@@ -65,7 +82,7 @@ function restartGame() {
 }
 function mapDraw () {
     let bw=cw/map.length;
-    map.split('').forEach(read)
+    map[level].split('').forEach(read)
     function read(value,i) {
       if(value==1){ctx.fillStyle='firebrick',ctx.fillRect(i*bw,0,bw,ch)};
       if(value==2){ctx.fillStyle='#7b9095', ctx.fillRect(i*bw,0,bw,ch);}//steel
