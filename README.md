@@ -6,4 +6,4 @@ When all plans and strategies seemed futile in front Of **Machine Dominance**.
 Apes suggested to tackle this crisis  The Old Way: **With Weapons and a Brave Heart.**
 You and several other fittest members of the team were provided with Bullets Capable of hacking into any Semiconductor intelligence.
 Let's Teleport You to 'New Silicon Valley'.  
-[Click For Action To Begin]https://lkithakur.github.io/roborebels
+[Click For Action To Begin](https://lkithakur.github.io/roborebels)
