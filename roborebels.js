@@ -36,8 +36,9 @@ mapDraw();
 function shoot(evnt){
     let rect = cnvs.getBoundingClientRect();
     let borderWidth = +((getComputedStyle(document.getElementById('zone'), null).getPropertyValue('border-left-width')).replace('px', ''))
+    let borderWidthTop = +((getComputedStyle(document.getElementById('zone'), null).getPropertyValue('border-top-width')).replace('px', ''))
     let xcanvas = evnt.clientX - rect.left - borderWidth
-    let ycanvas = evnt.clientY - rect.top - borderWidth;
+    let ycanvas = evnt.clientY - rect.top - borderWidthTop;
     let colorClicked=String(ctx.getImageData(xcanvas,ycanvas,1,1).data)
     killShow();
     bulletFired=true
@@ -73,7 +74,8 @@ function hideAllNotice() {
 }
 function restartGame() {
     id('zone').style.display='block';
-    cnvs.requestFullscreen();
+    cnvs.requestFullscreen().catch((e)=>console.log(e)).then(()=>sizeSet());
+    // sizeSet();
     roboPos=0;
     bulletFired=false;
     startGame();
