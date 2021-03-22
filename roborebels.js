@@ -1,4 +1,4 @@
-let cnvs;let cw;let ch;let rw;let rh;let roboPos;let level=0
+let cnvs, cw, ch, rw, rh, roboPos, level=localStorage.getItem('level')|| 0
 sizeSet();
 let bulletFired=false
 let ctx=cnvs.getContext('2d');
@@ -44,7 +44,7 @@ function shoot(evnt){
     bulletFired=true
      if(xcanvas>roboPos&&xcanvas<roboPos+rw&&colorClicked=='178,34,34,255'){//...colorClicked==wallcolor 
         if(level==9){alert('Congratulations,All Levels Completed.');return}
-        level++;
+        localStorage.setItem('level',++level);
         id('robodead').querySelector('button').innerHTML=`Start Mission @ <b style="font-size:larger">Map ${level}⏭<b>`
          setTimeout(()=>{noticeShow('robodead')}, 2000);
          return; 
@@ -75,7 +75,6 @@ function hideAllNotice() {
 function restartGame() {
     id('zone').style.display='block';
     cnvs.requestFullscreen().catch((e)=>console.log(e)).then(()=>sizeSet());
-    // sizeSet();
     roboPos=0;
     bulletFired=false;
     startGame();
