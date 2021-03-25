@@ -1,4 +1,10 @@
-let cnvs, cw, ch, rw, rh, roboPos, level=localStorage.getItem('level')|| 0
+let cnvs, cw, ch, rw, rh, roboPos, level=localStorage.getItem('level')|| 0;
+if(level!=0){
+let spans=document.querySelectorAll('#returninguser>p>span');
+spans[0].innerHTML=level-1;
+spans[1].innerHTML=level;
+noticeShow('returninguser');
+}
 sizeSet();
 let bulletFired=false
 let ctx=cnvs.getContext('2d');
@@ -91,6 +97,7 @@ function mapDraw () {
         }
     
 function noticeShow(noticeId) {
+    hideAllNotice()
     id('zone').style.display='none';
     id(noticeId).style.display='block';
  document.exitFullscreen();
