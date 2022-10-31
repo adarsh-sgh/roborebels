@@ -21,7 +21,10 @@ let map=[
 
     "0021200",
     "00221200",
-    "002221200"//level 9
+    "002221200",
+    
+    "022221200"
+    //level 10
 ]
 ctx.fillStyle="firebrick";
 function roboMove(){
